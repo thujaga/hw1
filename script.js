@@ -1,24 +1,56 @@
-console.log(padString('hello', '*', 10, true));
-console.log(padString('hello', '*', 10, false));
-console.log(padString('hello', '*', 3));
-console.log(padString('world', '*', 5));
-// console.log(padString('world', '*', 2));
+function cloneObj(car) {
+  let result = {};
 
-function padString(string, char, number, left=true) {
- var charsCount = string.length;
- var length = number-charsCount;
-
- if (length > 0) {
-  var newString = '';
-  for (let i = 0; i<length; i++){
-   newString+=char
+  for (key in car) {
+    if (car.hasOwnProperty(key)){
+      result[key] = car[key]
+    }
   }
-  if (left){
-   return newString+string;
-  } else {
-   return string+newString;
-  }
- } else {
-  return string
- }
+  return result
 }
+
+function getValues(obj, separator) {
+  let result = '';
+
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result += car[key] + separator
+    }
+  }
+
+  return result
+}
+
+function getKeys(obj, separator) {
+  let result = '';
+
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result += key + separator
+    }
+  }
+
+  return result
+}
+
+function getEntries() {
+  let result = '';
+
+  for (key in car) {
+    if (car.hasOwnProperty(key)) {
+      result += key + ' ' + car[key] + "\n"
+    }
+  }
+
+  return result
+}
+
+
+let car = {
+  name: 'edick',
+  age: 18,
+};
+console.log(cloneObj(car));
+console.log(getValues(car, '/'));
+console.log(getKeys(car, '/'));
+console.log(getEntries(car));
