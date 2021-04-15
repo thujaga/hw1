@@ -1,56 +1,81 @@
-function cloneObj(car) {
-  let result = {};
+function getResultAll(operation, ...data) {
+  let result = data[0];
+  data.shift();
 
-  for (key in car) {
-    if (car.hasOwnProperty(key)){
-      result[key] = car[key]
-    }
+  switch (operation) {
+    case '+':
+      for (key in data) {
+        if (Number.isInteger(data[key])) {
+          result += data[key]
+        }
+      }
+      break;
+    case '-':
+      for (key in data) {
+        if (Number.isInteger(data[key])) {
+          result -= data[key]
+        }
+      }
+      break;
+    case '*':
+      for (key in data) {
+        if (Number.isInteger(data[key])) {
+          result *= data[key]
+        }
+      }
+      break;
+    case '/':
+      for (key in data) {
+        if (Number.isInteger(data[key])) {
+          result /= data[key]
+        }
+      }
+      break;
+    default:
+      return 'invalid operator';
   }
+
   return result
 }
 
-function getValues(obj, separator) {
+
+function reverseString(string) {
   let result = '';
 
-  for (key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      result += car[key] + separator
+  for (let i=string.length-1; i>=0; i--) {
+    result += string[i]
+  }
+
+  return result
+}
+
+function isCharPresent(string, char) {
+  let result = false;
+
+  for (let i=0; i<=string.length; i++) {
+    if (string[i] === char) {
+      result = true
     }
   }
 
   return result
 }
 
-function getKeys(obj, separator) {
-  let result = '';
+function charIndexOf(string, char) {
+  let result = -1;
 
-  for (key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      result += key + separator
+  for (let i=0; i<=string.length; i++) {
+    if (string[i] === char) {
+      result = i
     }
   }
 
   return result
 }
 
-function getEntries() {
-  let result = '';
-
-  for (key in car) {
-    if (car.hasOwnProperty(key)) {
-      result += key + ' ' + car[key] + "\n"
-    }
-  }
-
-  return result
-}
-
-
-let car = {
-  name: 'edick',
-  age: 18,
-};
-console.log(cloneObj(car));
-console.log(getValues(car, '/'));
-console.log(getKeys(car, '/'));
-console.log(getEntries(car));
+console.log(getResultAll('*', 1, 1, 2, 1, 1));
+console.log(reverseString('abcdefg'));
+console.log(isCharPresent('abcdefg', 'a'));
+console.log(isCharPresent('abcdefg', '4'));
+console.log(charIndexOf('abcdefg', 'd'));
+console.log(charIndexOf('abcdefg', '4'));
